@@ -58,9 +58,3 @@
 * 기술은 실제 문제와 검증 근거를 기준으로 도입합니다.
 * 핵심 예약 흐름 완성을 부가 기술보다 우선합니다.
 
-```
-
-따라서 지금은 **`.github` 저장소를 추가로 만들고 `profile/README.md`를 넣는 게 맞다.** 백엔드와 프론트엔드 README는 그다음 각 저장소 소개용으로 별도로 작성하면 된다.
-```
-
-[1]: https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/customizing-your-organizations-profile?utm_source=chatgpt.com "Customizing your organization's profile - GitHub Docs"
