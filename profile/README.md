@@ -1,5 +1,3 @@
-## 초기 Organization README
-
 # 밥풀 BobFull
 
 혼자 여행하는 사용자가 합석 가능한 좌석을 예약하고  
