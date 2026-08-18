@@ -67,7 +67,10 @@ Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실�
 
 [▶ Flow Lab에서 시스템 흐름 직접 보기](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)
 
-> **[GIF 첨부 예정 — Flow Lab]**
+### 💳 결제 장애 격리 Flow Lab GIF
+
+<img width="900" height="422" alt="결제 이후 후속처리 흐름" src="https://github.com/user-attachments/assets/62524185-b285-47d1-a0df-9e984725b754" />
+
 
 ---
 
