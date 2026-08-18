@@ -5,6 +5,12 @@
 
 [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) · [🔬 Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/) · [⚙️ Backend](https://github.com/bobfull-project/bobfull-backend) · [🖥️ Frontend](https://github.com/bobfull-project/bobfull-frontend)
 
+<!-- 대표 서비스 GIF 준비 후 이 위치에 추가
+<p align="center">
+  <img src="SERVICE_PREVIEW_GIF_URL" width="900" alt="BobFull service preview">
+</p>
+-->
+
 ---
 
 ## 🍽️ 서비스 소개
@@ -33,17 +39,16 @@
 ## 🏗️ Engineering Highlights
 
 **🔒 예약·결제 정합성**  
-비관적 락과 상태 재검증으로 동시 예약 시 좌석 초과와 중복 상태 전이를 방지합니다.
+좌석 예약은 동시성 제어로 초과 예약을 막고, 결제는 외부 검증과 내부 상태 전이를 분리해 중복·역전 전이를 방지했습니다.
 
 **📨 비동기 신뢰성**  
-ChatRoom·Email은 **Transactional Outbox**, AI 후속 처리는 **Outbox + Kafka**로 처리 경계를 분리했습니다.
+ChatRoom·Email은 **Transactional Outbox**로 처리하고, AI 후속 처리는 동일 Outbox 조건에서 Async와 Kafka를 비교했습니다. Async가 더 빨랐지만(`5.394s` vs `7.210s`), 적체·복구·독립 확장을 분리할 운영 경계가 필요한 AI 작업에만 **Outbox + Kafka**를 적용했습니다.
 
 **🤖 AI 채팅 검수 · 식당 피드백 분석**  
-명확한 위험 메시지는 규칙으로 빠르게 걸러내고, 판단이 필요한 메시지만 LLM으로 분석해 결과를 저장합니다.  
-또한 채팅 속 음식·서비스·가격·청결 관련 의견을 개인 식별정보 없이 구조화·집계해 사장님이 확인할 수 있는 피드백 인사이트로 만들었습니다.
+명확한 위험 메시지는 규칙으로 빠르게 걸러내고, 판단이 필요한 메시지만 LLM으로 분석합니다. 음식·서비스·가격·청결 관련 의견은 개인 식별정보 없이 구조화·집계해 사장님용 피드백 인사이트로 제공합니다.
 
 **📊 측정 기반 의사결정**  
-Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실제 AWS 환경의 측정 결과로 판단했습니다.
+Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실제 AWS 환경의 측정 결과를 바탕으로 판단했습니다.
 
 ---
 
@@ -57,6 +62,20 @@ Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실�
 | Infra / CI·CD | AWS EC2 · ALB · RDS · S3 · Lambda · ECR · SSM · Docker · GitHub Actions |
 | Monitoring | Prometheus · Grafana |
 | Test | JUnit · Testcontainers · k6 |
+
+---
+
+## 🔬 Flow Lab
+
+복잡한 백엔드 흐름을 문서로만 설명하지 않고 **Chapter · Scenario · Step** 단위로 시각화해, 주요 상태 전이와 비동기 후속 처리를 직접 따라가며 확인할 수 있도록 만들었습니다.
+
+[▶ Flow Lab에서 시스템 흐름 직접 보기](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)
+
+<!-- Flow Lab GIF 준비 후 이 위치에 추가
+<p align="center">
+  <img src="FLOW_LAB_GIF_URL" width="900" alt="BobFull Flow Lab preview">
+</p>
+-->
 
 ---
 
