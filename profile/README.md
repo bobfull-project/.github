@@ -7,11 +7,7 @@
 
 **🍴 식당 탐색 → 👥 회차·인원 선택 → 💳 예약·결제 → ✅ 합석 성사 → 💬 채팅·식사**
 
-<!-- 대표 서비스 GIF 준비 후 이 위치에 추가
-<p align="center">
-  <img src="SERVICE_PREVIEW_GIF_URL" width="900" alt="BobFull service preview">
-</p>
--->
+> **[GIF 첨부 예정 — 서비스 핵심 흐름]**
 
 ---
 
@@ -71,11 +67,7 @@ Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실�
 
 [▶ Flow Lab에서 시스템 흐름 직접 보기](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/)
 
-<!-- Flow Lab GIF 준비 후 이 위치에 추가
-<p align="center">
-  <img src="FLOW_LAB_GIF_URL" width="900" alt="BobFull Flow Lab preview">
-</p>
--->
+> **[GIF 첨부 예정 — Flow Lab]**
 
 ---
 
