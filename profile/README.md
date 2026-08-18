@@ -1,17 +1,11 @@
-<div align="center">
-
 # 🍚 밥풀 BobFull
 
-### 혼자여도 함께 먹을 수 있도록
-
-개인 단위로 좌석을 예약하고, 다른 사용자와 함께 식사할 수 있도록 연결하는  
-**합석형 좌석 예약 플랫폼**입니다.
+> **혼자여도 함께 먹을 수 있도록**  
+> 개인 단위로 좌석을 예약하고, 다른 사용자와 함께 식사할 수 있도록 연결하는 **합석형 좌석 예약 플랫폼**입니다.
 
 [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) · [🔬 Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/) · [⚙️ Backend](https://github.com/bobfull-project/bobfull-backend) · [🖥️ Frontend](https://github.com/bobfull-project/bobfull-frontend)
 
 **🍴 식당 탐색 → 👥 회차·인원 선택 → 💳 예약·결제 → ✅ 합석 성사 → 💬 채팅·식사**
-
-</div>
 
 <!-- 대표 서비스 GIF 준비 후 이 위치에 추가
 <p align="center">
