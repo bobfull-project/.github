@@ -9,89 +9,52 @@
 
 ## 🍽️ 서비스 소개
 
-혼자 여행하거나 식사하는 사용자는 `2인 이상 주문`, `1인 예약 제한`, `혼밥의 부담` 때문에 원하는 식당을 이용하기 어려울 수 있습니다.
+혼자 여행하거나 식사할 때 겪는 `2인 이상 주문`, `1인 예약 제한`, 함께 식사할 사람을 직접 구해야 하는 불편을 해결합니다.
 
-**밥풀(BobFull)**은 사용자가 원하는 식당과 회차를 선택해 **개인 단위로 좌석을 예약**하고, 최소 성사 인원이 모이면 함께 식사할 수 있도록 연결합니다.
+사용자는 원하는 식당과 회차를 선택해 **개인 단위로 좌석을 예약**하고, 최소 성사 인원이 모이면 합석이 성사되어 채팅 후 함께 식사할 수 있습니다.
 
-```text
-식당 탐색
-   ↓
-회차 · 인원 선택
-   ↓
-예약 · 결제
-   ↓
-최소 인원 충족
-   ↓
-합석 성사
-   ↓
-채팅 · 함께 식사
-```
+**식당 탐색 → 회차·인원 선택 → 예약·결제 → 최소 인원 충족 → 합석 성사 → 채팅·식사**
 
 ---
 
 ## ✨ 핵심 기능
 
-- 🍴 식당 및 합석 가능한 회차 탐색
-- 👤 개인 단위 좌석 예약 및 잔여 좌석 관리
-- 💳 PortOne 기반 예약금 결제 · 취소 · 환불
-- 🔒 동시 예약 상황에서의 좌석 정합성 보장
-- 💬 합석 성사 후 실시간 채팅
+- 🍴 식당·합석 회차 탐색
+- 👤 개인 단위 좌석 예약·잔여 좌석 관리
+- 💳 PortOne 예약금 결제·취소·환불
+- 🔒 동시 예약 상황의 좌석 정합성 보장
+- 💬 다중 App 환경 실시간 채팅
 - 🤖 AI 기반 채팅 Moderation
-- 🔔 핵심 거래 이후 후속 작업 비동기 처리
-- 📊 성능 테스트 · 모니터링 · 장애 대응 구조
+- 📊 성능·장애·운영 검증 기반 시스템 고도화
 
 ---
 
-## 🏗️ 기술적 특징
+## 🏗️ Engineering Highlights
 
-### 안정적인 예약과 결제
+**🔒 예약·결제 정합성**  
+비관적 락과 상태 재검증으로 동시 예약 시 좌석 초과와 중복 상태 전이를 방지합니다.
 
-동시 예약 환경에서 **좌석 초과 판매를 방지**하고, 결제 · 예약 · 취소 · 환불의 상태 전이를 명확하게 관리합니다.
+**📨 비동기 신뢰성**  
+ChatRoom·Email은 **Transactional Outbox**, AI 후속 처리는 **Outbox + Kafka**로 처리 경계를 분리했습니다.
 
-### 신뢰성 있는 비동기 처리
+**🤖 AI Moderation**  
+명확한 사례는 Rule Fast Path, 판단이 필요한 메시지는 LLM 분석과 결과 검증으로 처리합니다.
 
-핵심 거래 이후의 후속 작업은 **Transactional Outbox**로 작업 의도를 보존합니다.  
-ChatRoom 생성과 이메일 발송은 Outbox 기반으로 처리하고, AI Moderation처럼 적체 · 재시도 · 실패 격리 · 독립 Consumer 경계가 필요한 작업에는 **Kafka**를 추가 적용했습니다.
-
-### AI Moderation
-
-단순 LLM 호출에 의존하지 않고 명확한 규칙과 AI 분석 경계를 분리해 **안전성 · 비용 · 응답 지연**을 함께 고려했습니다.
-
-```text
-명확한 위험 메시지
-→ Rule Fast Path
-
-판단이 필요한 메시지
-→ LLM Moderation
-
-→ 결과 검증 및 저장
-```
-
-### 측정 기반 성능·운영 판단
-
-Redis Cache, Query/Index, Kafka Consumer, App 확장 여부 등을 단순 도입하지 않고 **k6 · 통합 테스트 · 실제 AWS 환경의 측정 결과를 기준으로 채택·유지·미도입을 판단**했습니다.
+**📊 측정 기반 의사결정**  
+Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실제 AWS 환경의 측정 결과로 판단했습니다.
 
 ---
 
 ## 🛠️ Tech Stack
 
-**Backend**  
-Java · Spring Boot · Spring Security · Spring Data JPA · Spring AI
-
-**Database / Cache**  
-MySQL · Redis / ElastiCache
-
-**Messaging**  
-Apache Kafka
-
-**Infrastructure / CI·CD**  
-AWS EC2 · ALB · RDS · S3 · Lambda · ECR · SSM · Docker · GitHub Actions
-
-**Monitoring**  
-Prometheus · Grafana
-
-**Test**  
-JUnit · Testcontainers · k6
+| 영역 | 기술 |
+|---|---|
+| Backend | Java · Spring Boot · Spring Security · Spring Data JPA · Spring AI |
+| Data | MySQL · Redis / ElastiCache |
+| Messaging | Apache Kafka |
+| Infra / CI·CD | AWS EC2 · ALB · RDS · S3 · Lambda · ECR · SSM · Docker · GitHub Actions |
+| Monitoring | Prometheus · Grafana |
+| Test | JUnit · Testcontainers · k6 |
 
 ---
 
@@ -99,8 +62,8 @@ JUnit · Testcontainers · k6
 
 | 구분 | 내용 |
 |---|---|
-| [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) | System Architecture · API · ERD · ADR · Troubleshooting |
-| [🔬 Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/) | 주요 백엔드 시스템 흐름을 인터랙티브하게 확인 |
+| [📚 Technical Docs](https://github.com/bobfull-project/bobfull-docs) | Architecture · API · ERD · ADR · Troubleshooting |
+| [🔬 Flow Lab](https://bobfull-project.github.io/bobfull-docs/flow-lab/v3/operations-flow-lab/) | 주요 백엔드 시스템 흐름 인터랙티브 확인 |
 | [⚙️ Backend](https://github.com/bobfull-project/bobfull-backend) | Spring Boot 구현 · 정책 · Evidence · 상세 기술 문서 |
 | [🖥️ Frontend](https://github.com/bobfull-project/bobfull-frontend) | React 클라이언트 구현 · 실행 · 배포 |
 
@@ -115,8 +78,4 @@ JUnit · Testcontainers · k6
 | **정용태** | 회원 · 인증 · 식당 · 관리자 · 조회 성능 |
 | **김홍기** | 합석 · 회차 · 검색 · 배포 · 모니터링 |
 
----
-
-## 📅 Project
-
-**2026.07.21 ~ 2026.08.24**
+**Project · 2026.07.21 ~ 2026.08.24**
