@@ -52,32 +52,8 @@ Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실�
 
 AWS 기반 다중 App 구조와 Blue-Green 배포를 구성하고, 데이터 저장소·메시징·모니터링·외부 결제/AI 연동의 책임을 분리했습니다.
 
-```mermaid
-flowchart LR
-    U[Users] --> CF[CloudFront]
-    CF --> FE[S3 Frontend]
-    U --> ALB[ALB]
+<img width="1642" height="952" alt="시스템 아키텍처" src="https://github.com/user-attachments/assets/abe4f7a8-37cd-4365-bb0a-62620a4728bf" />
 
-    ALB --> B[Blue EC2 x2]
-    ALB --> G[Green EC2 x2]
-
-    B --> DB[(RDS MySQL)]
-    G --> DB
-    B --> REDIS[(ElastiCache Valkey)]
-    G --> REDIS
-    B --> K[Kafka]
-    G --> K
-
-    B --> EXT[PortOne / OpenAI / SMTP]
-    G --> EXT
-
-    MON[Prometheus / Grafana] --> B
-    MON --> G
-
-    CI[GitHub Actions] --> ECR[ECR]
-    ECR --> B
-    ECR --> G
-```
 
 > 평시에는 Blue/Green 중 **Active 환경의 App EC2 2대만 서비스**하고, 배포 시 Inactive 환경을 기동·검증한 뒤 ALB Traffic Weight를 전환합니다.  
 > [▶ 상세 System Architecture 보기](https://github.com/bobfull-project/bobfull-docs/blob/main/architecture/system-architecture.md)
