@@ -48,6 +48,27 @@ Redis Cache·Query/Index·Kafka·App 확장 여부를 k6, 통합 테스트, 실�
 
 ---
 
+## ✅ 구현·검증 현황
+
+문서에 존재하거나 설계가 완료됐다는 이유만으로 **구현·배포·실측 완료로 표시하지 않습니다.** 실제 코드와 Evidence를 기준으로 상태를 구분합니다.
+
+| 영역 | 상태 | 확인 범위 |
+|---|---|---|
+| 예약·환불·Outbox 동시성 방어 | ✅ 구현·검증 | 비관적 락·조건부 UPDATE·낙관락·Outbox claim 검증 |
+| Redis 식당 검색 Cache | 📊 구현·실측 | Warm Cache의 DB 조회·Hikari Pool 점유 감소 실측 |
+| Query / Index 최적화 | 📊 구현·실측 | 검색·예약 조회·지급 예정금 조회 Hot-path 개선 실측 |
+| Transactional Outbox | ✅ 구현·검증 | ChatRoom·Email·Kafka 발행 의도 보존과 실패 재처리 검증 |
+| Kafka AI 후속 처리 | ✅ 구현·검증 | Retry / DLT·Consumer 중단 복구·중복 방어 검증 |
+| AI Moderation | 📊 구현·실측 | Regression·Held-out 데이터셋 기반 품질 측정 |
+| App HA / Blue-Green | 📊 구현·실측 | ALB + App EC2 2대, Traffic Switch·Rollback 실측 |
+| Auto Scaling | ⚪ 실측 후 미도입 | 현재 부하에서는 App CPU보다 DB Pool 대기가 먼저 발생해 미채택 |
+| AI Worker / MSA 분리 | ⚪ 실측 후 미도입 | AI 지연 격리·복구를 확인한 뒤 통합 모놀리스 유지 |
+
+> ✅ `구현·검증` · 📊 `구현·실측` · ⚪ `실측 후 미도입`  
+> 상세 수치·실험 조건·한계는 [V3 Final Claim Matrix](https://github.com/bobfull-project/bobfull-backend/blob/develop/docs/evidence/v3/FINAL_CLAIM_MATRIX.md)에서 확인할 수 있습니다.
+
+---
+
 ## 🛠️ Tech Stack
 
 | 영역 | 기술 |
