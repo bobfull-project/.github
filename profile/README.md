@@ -83,14 +83,18 @@ AWS 기반 다중 App 구조와 Blue-Green 배포를 구성하고, 데이터 저
 
 ## 🛠️ Tech Stack
 
-| 영역 | 기술 |
+| 영역 | 기술 / 버전 |
 |---|---|
-| Backend | Java · Spring Boot · Spring Security · Spring Data JPA · Spring AI |
-| Data | MySQL · Redis / ElastiCache |
-| Messaging | Apache Kafka |
+| Backend | Java **17** · Spring Boot **4.1.0** · Spring AI **2.0.0** · QueryDSL **5.1.0** · Gradle **9.5.1** |
+| Data | MySQL **8.4** (Local) · Amazon RDS for MySQL (Production) · Redis **7-alpine** (Local) · Amazon ElastiCache for Valkey (Production, 엔진 버전 확인 필요) |
+| Messaging | Apache Kafka **3.9.0** (Local) · KRaft Broker on EC2 (Production) |
+| Frontend | React **19.2.0** · TypeScript **5.9.3** · Vite **7.3.1** · Tailwind CSS **3.4.17** |
+| Payment | PortOne Server SDK **0.24.0** |
 | Infra / CI·CD | AWS EC2 · ALB · RDS · S3 · Lambda · ECR · SSM · Docker · GitHub Actions |
 | Monitoring | Prometheus · Grafana |
 | Test | JUnit · Testcontainers · k6 |
+
+> 버전은 프로젝트의 실제 빌드·실행 설정 기준이며, AWS 관리형 서비스는 실제 배포 환경을 기준으로 표기합니다.
 
 ---
 
